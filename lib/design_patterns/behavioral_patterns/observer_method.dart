@@ -37,3 +37,15 @@ class Editor {
     }
   }
 }
+
+class LoggingListener implements EventListener {
+  final String logFile;
+  final String message;
+
+  LoggingListener(this.logFile, this.message);
+
+  @override
+  void update(String filename) {
+    print('$message $filename (Logged in $logFile)');
+  }
+}
