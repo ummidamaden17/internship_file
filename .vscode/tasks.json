@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Kill Windows App",
+        "type": "shell",
+        "command": "taskkill /F /IM internship_file.exe",
+        "problemMatcher": []
+      },
+      {
+        "label": "Run Flutter App",
+        "type": "shell",
+        "dependsOn": ["Kill Windows App"],
+        "command": "flutter run",
+        "problemMatcher": []
+      }
+    ]
+  }
+  
+
+  
