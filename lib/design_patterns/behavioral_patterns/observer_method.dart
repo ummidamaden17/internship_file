@@ -49,3 +49,30 @@ class LoggingListener implements EventListener {
     print('$message $filename (Logged in $logFile)');
   }
 }
+
+class EmailAlertsListener implements EventListener {
+  final String email;
+  final String message;
+
+  EmailAlertsListener(this.email, this.message);
+
+  @override
+  void update(String filename) {
+    print('Sending email to $email: $message $filename');
+  }
+}
+
+void main() {
+  final editor = Editor();
+
+  final logger =
+      LoggingListener('/path/to/log.txt', 'Someone has opened file:');
+  editor.events.subscribe('open', logger);
+
+  final emailAlerts =
+      EmailAlertsListener('admin@example.com', 'Someone has changed the file:');
+  editor.events.subscribe('save', emailAlerts);
+
+  editor.openFile('document.txt');
+  editor.saveFile();
+}
